@@ -1,0 +1,80 @@
+# OS / System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging
+*.egg-info/
+.eggs/
+build/
+develop-eggs/
+dist/
+pip-wheel-metadata/
+
+# Uvicorn / FastAPI logs
+*.log
+
+# FRONTEND (React / Next.js / Vite / Node)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Production builds
+dist/
+build/
+.tmp/
+.cache/
+.next/
+out/
+
+# Env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# React-specific
+*.env*
+
+# Vercel
+.vercel/
+
+# IDE / EDITOR FILES (VSCode, PyCharm, JetBrains)
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# FIREBASE / DEPLOYMENT
+firebase.json
+.firebaserc
+.firebase/
+.cache/firebase/
+storage_export/
+
+# DOCKER (if needed later)
+docker-compose.override.yml
+docker-data/
