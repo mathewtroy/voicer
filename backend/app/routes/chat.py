@@ -14,10 +14,6 @@ class ChatRequest(BaseModel):
 
 @router.post("/chat")
 async def chat_endpoint(payload: ChatRequest):
-    """
-    Chat endpoint using Groq (LLaMA 3.1).
-    """
-
     try:
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
@@ -27,9 +23,7 @@ async def chat_endpoint(payload: ChatRequest):
             ],
         )
 
-        # NEW correct way to extract content:
         reply = response.choices[0].message.content
-
         return {"reply": reply}
 
     except Exception as e:
