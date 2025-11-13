@@ -6,10 +6,9 @@ from app.routes import stt, chat, tts
 
 app = FastAPI(title="Voicer Backend")
 
-# TODO: later add Vercel frontend URL here
 origins = [
-    "http://localhost:5173",  # Vite dev server
-    "http://localhost:3000",  # React dev server
+    "http://localhost:5173",
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
@@ -26,7 +25,6 @@ def root():
     return {"message": "Voicer backend is running"}
 
 
-# Include routers
 app.include_router(stt.router, prefix="/api", tags=["stt"])
 app.include_router(chat.router, prefix="/api", tags=["chat"])
 app.include_router(tts.router, prefix="/api", tags=["tts"])
