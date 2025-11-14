@@ -1,0 +1,161 @@
+/* THEME VARIABLES */
+:root {
+  --bg: #0d0b14;
+  --bg-light: #15121f;
+  --bg-dark: #0a0810;
+
+  --text: #ffffff;
+  --text-muted: #bbbbbb;
+
+  --primary: #a855f7;
+  --primary-dark: #7e22ce;
+  --primary-light: #c084fc;
+
+  --bubble-user: #7c3aed;
+  --bubble-ai: #262335;
+
+  --radius: 14px;
+}
+
+
+/* LAYOUT */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+
+/* WELCOME BOX */
+.welcome-box {
+  text-align: center;
+  padding: 28px;
+  background: linear-gradient(135deg, #1b1425, #110d18);
+  border-radius: var(--radius);
+  border: 1px solid #2d2337;
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.25);
+  margin-bottom: 20px;
+  animation: fadeIn 1.4s ease-in-out;
+}
+
+.welcome-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--primary-light);
+  margin-top: 10px;
+  margin-bottom: 8px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.welcome-sub {
+  font-size: 15px;
+  opacity: 0.8;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+
+/* CHAT WINDOW */
+.chat-container {
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  border: 1px solid #2a2434;
+  padding: 16px;
+  height: 65vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* MESSAGE BUBBLES */
+.message-user {
+  align-self: flex-end;
+  background: var(--bubble-user);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  max-width: 70%;
+  color: white;
+  animation: fadeInUp 0.35s ease-out;
+}
+
+.message-ai {
+  align-self: flex-start;
+  background: var(--bubble-ai);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  max-width: 70%;
+  color: var(--text);
+  animation: fadeInUp 0.35s ease-out;
+}
+
+.message-text {
+  white-space: pre-wrap;
+  line-height: 1.45;
+}
+
+
+/* RECORD BUTTON */
+.input-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.record-button {
+  background: var(--primary);
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+}
+
+.record-button.recording {
+  background: var(--primary-dark);
+  transform: scale(1.18);
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.7);
+}
+
+
+/* LOADER */
+.loader {
+  margin: 10px auto;
+  border: 4px solid #3a2f46;
+  border-top: 4px solid var(--primary-light);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  animation: spin 0.8s linear infinite;
+}
+
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
