@@ -1,18 +1,13 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function sendTextToChat(message: string): Promise<string> {
-  const response = await fetch(`${API_URL}/api/chat`, {
+  const res = await fetch(`${BASE_URL}/api/chat`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),
   });
 
-  if (!response.ok) {
-    throw new Error("Chat API error");
-  }
+  if (!res.ok) throw new Error("Chat API error");
 
-  const data = await response.json();
-  return data.reply;
+  return (await res.json()).reply;
 }
