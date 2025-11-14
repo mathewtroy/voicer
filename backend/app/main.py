@@ -9,11 +9,16 @@ app = FastAPI(title="Voicer Backend")
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://voicer-ai.vercel.app",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://voicer-ai.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
