@@ -5,3 +5,8 @@ export interface Message {
   sender: Sender;
   text: string;
 }
+export interface FrontLogEntry {
+  timestamp: string;
+  event: string;
+  data?: unknown;
+}
