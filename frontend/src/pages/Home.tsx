@@ -6,6 +6,7 @@ import "../styles/global.css";
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isAssistantResponding, setIsAssistantResponding] = useState(false);
 
   return (
     <div className="app-container">
@@ -18,16 +19,21 @@ export default function Home() {
 
         <h1 className="welcome-title">Welcome to Voicer</h1>
         <p className="welcome-sub">
-          Your personal voice-powered AI assistant.
-          <br />
+          Your personal voice-powered AI assistant.  
           Hold the button to speak — I’ll listen, think, and talk back.
         </p>
       </div>
 
-      <ChatWindow messages={messages} />
+      <ChatWindow
+        messages={messages}
+        isAssistantResponding={isAssistantResponding}
+      />
 
       <div className="input-container">
-        <RecordButton setMessages={setMessages} />
+        <RecordButton
+          setMessages={setMessages}
+          setIsAssistantResponding={setIsAssistantResponding}
+        />
       </div>
     </div>
   );

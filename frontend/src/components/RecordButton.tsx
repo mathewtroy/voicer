@@ -8,9 +8,13 @@ import type { Message } from "../types";
 
 interface Props {
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+  setIsAssistantResponding: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function RecordButton({ setMessages }: Props) {
+export default function RecordButton({
+  setMessages,
+  setIsAssistantResponding,
+}: Props) {
   const { startRecording, stopRecording, isRecording } = useRecorder();
   const [status, setStatus] = useState("");
   const [ttsAudio, setTtsAudio] = useState("");
@@ -26,16 +30,18 @@ export default function RecordButton({ setMessages }: Props) {
     if (!audioBlob) return;
 
     try {
-      // 1) STT — speech → text
+      // 1) STT
       const text = await sendAudioToSTT(audioBlob);
-      console.log("STT:", text);
 
       setMessages((prev) => [
         ...prev,
         { id: Date.now(), sender: "user", text },
       ]);
 
-      // 2) Chat — LLM response
+      // Assistant thinking
+      setIsAssistantResponding(true);
+
+      // 2) Chat
       const reply = await sendTextToChat(text);
 
       setMessages((prev) => [
@@ -43,14 +49,20 @@ export default function RecordButton({ setMessages }: Props) {
         { id: Date.now(), sender: "assistant", text: reply },
       ]);
 
-      // 3) TTS — voice synthesis of the response
+      // 3) TTS (speaking)
       const audioBase64 = await sendTextToTTS(reply);
       setTtsAudio(audioBase64);
+
+      // Assistant finished thinking
+      setIsAssistantResponding(false);
     } catch (err) {
       console.error(err);
       setStatus("Something went wrong…");
-      setTimeout(() => setStatus(""), 2000);
-      return;
+
+      // Turn off the indicator in case of an error
+      setIsAssistantResponding(false);
+
+      setTimeout(() => setStatus(""), 1500);
     }
 
     setStatus("");
