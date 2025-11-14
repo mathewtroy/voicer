@@ -1,7 +1,7 @@
 # 🎤 Voicer AI — Voice-Powered Intelligent Assistant
 
 **Backend:** FastAPI (Render)  
-**Frontend:** React + Vite (Vercel)  
+**Frontend:** TypeScript + Vite (Vercel)  
 **Author:** Aleksandr Kross  
 
 🔗 **Live App:** https://voicer-ai.vercel.app  
@@ -51,7 +51,7 @@ The project is designed as a **Proof-of-Concept (PoC)** for a kiosk-style intera
 
 | Category | Tools |
 |---------|-------|
-| Frontend | React, TypeScript, Vite |
+| Frontend | TypeScript, Vite |
 | Styling | Custom CSS, animations |
 | Audio | MediaRecorder API, HTMLAudioElement |
 | Backend | FastAPI, Uvicorn, Python 3 |
@@ -71,11 +71,11 @@ The project is designed as a **Proof-of-Concept (PoC)** for a kiosk-style intera
 **backend/requirements.txt** — Python dependencies <br>
 **backend/render.yaml** — Render deployment configuration <br>
 
-**frontend/** — frontend source folder (React + Vite) <br>
+**frontend/** — frontend source folder (TypeScript + Vite) <br>
 **frontend/public/** — static assets (icons, favicon, voicer-logo.svg) <br>
 **frontend/src/api/** — functions for calling backend APIs (STT, Chat, TTS) <br>
 **frontend/src/components/** — reusable UI components (Navbar, ChatWindow, RecordButton, etc.) <br>
-**frontend/src/hooks/** — custom React hooks (useRecorder) <br>
+**frontend/src/hooks/** — custom TypeScript hooks (useRecorder) <br>
 **frontend/src/pages/** — main pages (Home, FrontendLogs) <br>
 **frontend/src/styles/** — global.css and theme styling <br>
 **frontend/src/types.ts** — shared TypeScript types (Message, Sender, Logs) <br>
@@ -107,7 +107,7 @@ http://127.0.0.1:8000
 Swagger UI: http://127.0.0.1:8000/docs
 
 
-**Frontend (React + Vite):** <br>
+**Frontend (TypeScript + Vite):** <br>
 
 `cd frontend
 npm install
