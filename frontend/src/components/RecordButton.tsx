@@ -16,18 +16,26 @@ export default function RecordButton({
   setIsAssistantResponding,
 }: Props) {
   const { startRecording, stopRecording, isRecording } = useRecorder();
+
   const [status, setStatus] = useState("");
   const [ttsAudio, setTtsAudio] = useState("");
 
-  async function handlePress() {
-    setStatus("Recording...");
-    await startRecording();
-  }
+  async function handleClick() {
+    if (!isRecording) {
+      // START RECORDING
+      setStatus("Recording...");
+      await startRecording();
+      return;
+    }
 
-  async function handleRelease() {
+    // STOP RECORDING
     setStatus("Processing...");
     const audioBlob = await stopRecording();
-    if (!audioBlob) return;
+
+    if (!audioBlob) {
+      setStatus("");
+      return;
+    }
 
     try {
       // 1) STT
@@ -53,16 +61,13 @@ export default function RecordButton({
       const audioBase64 = await sendTextToTTS(reply);
       setTtsAudio(audioBase64);
 
-      // Assistant finished thinking
       setIsAssistantResponding(false);
     } catch (err) {
       console.error(err);
-      setStatus("Something went wrong…");
-
-      // Turn off the indicator in case of an error
+      setStatus("Error...");
       setIsAssistantResponding(false);
 
-      setTimeout(() => setStatus(""), 1500);
+      setTimeout(() => setStatus(""), 1200);
     }
 
     setStatus("");
@@ -72,10 +77,7 @@ export default function RecordButton({
     <div style={{ textAlign: "center" }}>
       <button
         className={`record-button ${isRecording ? "recording" : ""}`}
-        onMouseDown={handlePress}
-        onMouseUp={handleRelease}
-        onTouchStart={handlePress}
-        onTouchEnd={handleRelease}
+        onClick={handleClick}
       />
 
       <p style={{ opacity: 0.7, marginTop: 10 }}>{status}</p>

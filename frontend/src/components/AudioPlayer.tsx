@@ -1,15 +1,38 @@
+import { useEffect, useRef } from "react";
+
 interface AudioPlayerProps {
   audioBase64: string;
 }
 
 export default function AudioPlayer({ audioBase64 }: AudioPlayerProps) {
-  if (!audioBase64) return null;
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const audioUrl = "data:audio/mp3;base64," + audioBase64;
+  useEffect(() => {
+    if (!audioBase64) return;
 
-  return (
-    <audio autoPlay>
-      <source src={audioUrl} type="audio/mp3" />
-    </audio>
-  );
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const audioUrl = "data:audio/mp3;base64," + audioBase64;
+    audio.src = audioUrl;
+
+    const playAudio = async () => {
+      try {
+        await audio.play();
+        console.log("Audio: playing");
+      } catch (err) {
+        console.warn("Audio autoplay blocked:", err);
+
+        setTimeout(() => {
+          audio.play().catch((retryErr) => {
+            console.error("Audio retry failed:", retryErr);
+          });
+        }, 300);
+      }
+    };
+
+    playAudio();
+  }, [audioBase64]);
+
+  return <audio ref={audioRef} />;
 }
