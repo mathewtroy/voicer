@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 import httpx
 from app.config import DEEPGRAM_API_KEY
+from app.logger import log
 
 router = APIRouter()
 
@@ -9,7 +10,10 @@ DEEPGRAM_URL = "https://api.deepgram.com/v1/listen"
 
 @router.post("/stt")
 async def speech_to_text(audio: UploadFile = File(...)):
+    log("STT_RECEIVED", {"file_type": audio.content_type})
+
     if audio.content_type not in ["audio/wav", "audio/mpeg", "audio/webm", "audio/ogg"]:
+        log("STT_UNSUPPORTED_FORMAT", {"type": audio.content_type})
         raise HTTPException(status_code=400, detail="Unsupported audio format")
 
     audio_bytes = await audio.read()
@@ -29,9 +33,14 @@ async def speech_to_text(audio: UploadFile = File(...)):
                 content=audio_bytes,
                 headers=headers,
             )
+
         data = response.json()
         transcript = data["results"]["channels"][0]["alternatives"][0]["transcript"]
+
+        log("STT_TRANSCRIPT", {"text": transcript})
+
         return {"text": transcript}
 
     except Exception as e:
+        log("STT_ERROR", {"error": str(e)})
         raise HTTPException(status_code=500, detail=f"STT Error: {str(e)}")
