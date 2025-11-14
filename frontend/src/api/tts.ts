@@ -1,5 +1,7 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 export async function sendTextToTTS(text: string): Promise<string> {
-  const response = await fetch("http://localhost:8000/api/tts", {
+  const response = await fetch(`${API_URL}/api/tts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -12,6 +14,5 @@ export async function sendTextToTTS(text: string): Promise<string> {
   }
 
   const data = await response.json();
-
-  return data.audio_base64; // base64 string
+  return data.audio_base64;
 }

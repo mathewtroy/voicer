@@ -1,8 +1,10 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 export async function sendAudioToSTT(audioBlob: Blob): Promise<string> {
   const formData = new FormData();
   formData.append("audio", audioBlob, "recording.webm");
 
-  const response = await fetch("http://localhost:8000/api/stt", {
+  const response = await fetch(`${API_URL}/api/stt`, {
     method: "POST",
     body: formData,
   });
@@ -12,6 +14,5 @@ export async function sendAudioToSTT(audioBlob: Blob): Promise<string> {
   }
 
   const data = await response.json();
-
-  return data.text; // Deepgram returns { text: "..." }
+  return data.text;
 }
