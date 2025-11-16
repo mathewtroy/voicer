@@ -62,6 +62,13 @@ export default function Home() {
           setIsAssistantResponding={setIsAssistantResponding}
         />
       </div>
+
+      <div style={{ display: "none" }}>
+        Voicer is an AI assistant that uses Deepgram STT, Groq LLaMA AI,
+        and TTS to communicate with users. Speak naturally — Voicer listens,
+        understands, and responds.
+      </div>
+
     </div>
   );
 }

@@ -2,10 +2,82 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/voicer-icon.svg" />
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+
+    <!-- Primary Title -->
+    <title>Voicer — AI Voice Assistant</title>
+    <meta name="title" content="Voicer — AI Voice Assistant" />
+
+    <!-- Description -->
+    <meta
+      name="description"
+      content="Voicer is an AI-powered voice assistant web app. Talk using your microphone — Voicer listens, thinks, and responds with natural voice. Built with React, TypeScript, Deepgram, Groq LLaMA, and FastAPI."
+    />
+
+    <!-- Keywords -->
+    <meta
+      name="keywords"
+      content="AI voice assistant, voicer, speech to text, text to speech, Deepgram, Groq, LLaMA, React, FastAPI, STT, TTS, chatbot, Vite"
+    />
+
+    <meta name="author" content="Aleksandr Kross" />
+
+    <!-- Open Graph (Facebook, Telegram, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://voicer-ai.vercel.app/" />
+    <meta property="og:title" content="Voicer — AI Voice Assistant" />
+    <meta
+      property="og:description"
+      content="Talk to an AI assistant with your voice. Voicer listens, understands, and speaks back."
+    />
+    <meta
+      property="og:image"
+      content="https://voicer-ai.vercel.app/voicer-preview.png"
+    />
+
+    <!-- Twitter Cards -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://voicer-ai.vercel.app/" />
+    <meta property="twitter:title" content="Voicer — AI Voice Assistant" />
+    <meta
+      property="twitter:description"
+      content="Talk to an AI assistant with your voice. Voicer listens, understands, and speaks back."
+    />
+    <meta
+      property="twitter:image"
+      content="https://voicer-ai.vercel.app/voicer-preview.png"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Voicer AI",
+        "url": "https://voicer-ai.vercel.app",
+        "description": "Voice-powered AI assistant that listens, understands and speaks back.",
+        "applicationCategory": "Chatbot",
+        "operatingSystem": "Web",
+        "creator": {
+          "@type": "Person",
+          "name": "Aleksandr Kross"
+        }
+      }
+    </script>
+
+    <!-- Hidden SEO text -->
+    <div style="display:none">
+      Voicer is an AI voice assistant web app using speech recognition
+      (Deepgram), Groq LLaMA AI chat model, and text-to-speech output. Speak
+      naturally — Voicer listens, processes, and talks back.
+    </div>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
